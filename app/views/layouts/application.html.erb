@@ -1,0 +1,102 @@
+<!doctype html>  
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ --> 
+<!--[if lt IE 7 ]> <html lang="<%= lang %>" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<%= lang %>" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<%= lang %>" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<%= lang %>" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= lang %>" class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8">
+
+  <title>Homepage - <%= @page_title %></title>
+  <meta name="description" content="<%= @page_description %>">
+  <meta name="author" content="Your name">
+  <%= @link_canonical %>
+
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS : implied media="all" -->
+  <link href='http://fonts.googleapis.com/css?family=Reenie+Beanie'       	rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/css/style.css?v=1">
+  <link rel="stylesheet" href="/css/mystyle.css?v=1">
+
+
+  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
+  <script src="/js/libs/modernizr-1.6.min.js"></script>
+
+</head>
+
+<body>
+  <div id="container" style="background-image:url(/images/background/<%= get_background %>);">
+    <header>
+      <div id="contact" class="roundbox">
+	<div class="roundboxinner clearfix">
+	  <div id="contact_data" class="<%= get_visibility_class %>">
+	    <h1>Your name</h1>
+<a class="flag" href="<%= lang_changelink %>"><img src="/images/flag_<%= lang.equals("de")? "en" : "de" %>.png" alt="<%= lang_version %>" title="<%= lang_version %>" ></a>
+	    <p><%= lang_contact %>: mail@example.com
+	    </p> 
+	    
+	    <p><%= lang_profile %>: Your profile
+	    </p> 
+	  </div>
+	  <nav>
+	    <ul>
+	      <li><a href="/<%= lang %>" class="<%= @nav_activeclass.get(0) %>"><%= lang_topics.get(0) %></a></li>
+	      <li><a href="/motivation/<%= lang %><%= get_background_parameter %>" class="<%= @nav_activeclass.get(1) %>"><%= lang_topics.get(1) %></a></li>
+	      <li><a href="/research/<%= lang %><%= get_background_parameter %>" class="<%= @nav_activeclass.get(2) %>"><%= lang_topics.get(2) %></a></li>
+	      <li><a href="/technology/<%= lang %><%= get_background_parameter %>" class="<%= @nav_activeclass.get(3) %>"><%= lang_topics.get(3) %></a></li>
+	      <li><a href="/background/<%= lang %><%= get_background_parameter %>" class="<%= @nav_activeclass.get(4) %>"><%= lang_topics.get(4) %></a></li>
+	    </ul>
+	  </nav>
+	</div>
+      </div>
+      <div id="profilepic" class="roundbox <%= get_visibility_class %>">
+	<div class="roundboxinner">
+	  <img src="/images/you.jpg" alt="You"> 
+	</div>
+	<img class="gecko" src="/images/Gecko_klein.png" alt="Gecko"> 
+      </div>
+    </header>
+    
+    <div id="main" class="roundbox <%= get_margin_class %>">
+      <div class="roundboxinner">
+	<article id="contentHolder">
+<%= yield_body %>
+	</article>
+      </div>
+    </div>
+    
+    <footer class="roundboxinner">
+Impressum
+    </footer>
+  </div> <!--! end of #container -->
+
+
+  <!-- Javascript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery. fall back to local if necessary -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/js/libs/jquery-1.4.4.min.js"%3E%3C/script%3E'))</script>
+  
+  
+  <!-- scripts concatenated and minified via ant build script-->
+  <script src="/js/plugins.js"></script>
+  <!--[if (gt IE 8)|!(IE)]><!-->
+    <script src="/js/script.js"></script>
+  <!--<![endif]-->
+  <script src="/js/hyphenation.js"></script>
+  <!-- end concatenated and minified scripts-->
+  
+  
+  <!--[if lt IE 7 ]>
+    <script src="js/libs/dd_belatedpng.js"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
+
+</body>
+</html>

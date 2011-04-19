@@ -1,0 +1,195 @@
+body { 
+    background-color: #12120D;
+    color: #12120D; 
+}
+
+h1 {
+    font-size: 48px;
+    font-family: 'Reenie Beanie', sans-serif;
+    font-size-adjust: 0.4;
+    display: inline-block;
+    margin-top: -5px;
+}
+
+h2 {
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 0.5em;
+}
+
+a {
+    color: #12120D;
+}
+
+footer {
+    margin-left: 880px;
+    position: absolute;
+}
+
+header {
+    height: 240px;
+    position: relative;
+}
+
+#container {
+    font-size: 1.1em;
+    width: 1000px;
+    height: 667px;
+    margin: 10px auto;
+
+    -moz-box-shadow: 0 0 10px #5E5E44;
+    -webkit-box-shadow: 0 0 10px #5E5E44;
+    box-shadow: 0 0 10px #5E5E44;
+
+    background-repeat:no-repeat;
+    background-position: center;
+}
+
+.roundbox {
+    margin-top: 10px;
+    padding: 10px 10px;
+    background: #9F8158;
+    background-color: rgba( 159, 129, 88, 0.5);
+    background: rgba( 159, 129, 88, 0.5);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.roundboxinner {
+    padding: 10px 10px;
+    background: #EBC785;
+    background-color: rgba(235, 199, 133, 0.9);
+    background: rgba(235, 199, 133, 0.9);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+/* Box Elements ******************* */
+#contact {
+    margin-left:20px;
+    position: absolute;
+    width: auto;
+}
+
+#contact_data{
+    position: relative;
+}
+
+.flag {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+#profilepic {
+    width:160px;
+    margin-right: 20px;
+    /*float: right;*/
+    position: absolute;
+    right: 0px;
+}
+
+.gecko {
+    position: relative;
+    top: -25px;
+    float: right;
+    margin-bottom: -20px;
+    margin-top: -20px;
+}
+
+#main {
+    width:940px;
+    margin-left:20px;
+}
+
+#maincontent{
+    column-count: 3;
+    column-gap: 1em;
+    column-rule: 1px solid #12120D;
+    -moz-column-count: 3;
+    -moz-column-gap: 1em;
+    -moz-column-rule: 1px solid #9F8158;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 1em;
+    -webkit-column-rule: 1px solid #12120D;
+
+    text-align: justify;
+}
+
+.preloader{
+	display:block;
+	margin:120px auto;
+}
+
+/* Navigation ********************************* */
+nav{
+    padding: 0px 0px;
+}
+
+nav ul {
+  list-style:none; 
+}
+
+nav ul li {
+    background-color: #665845;
+    border-color: #9F8158;
+    border-width: 1px;
+    border-style: solid;
+
+    padding: 0.5em 0em;
+    margin-right: 0.5em;
+
+    float: left;
+    display: inline-block;
+    font-weight: bold;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+nav ul li a, nav ul li a:active, nav ul li a:visited {
+  color: #EBC785;
+  text-decoration: none;
+  padding: 0.5em 0.5em;
+}
+
+nav ul li a:hover, nav ul li a:active,  nav ul li a.active {
+    color: #EBC785;
+    background-color: #733027;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px
+}
+
+/* Special classes for background page*/
+.invisible {
+    display: none;
+}
+
+.topmargin {
+    margin-top: 380px;
+}
+
+/* Clearing floats without extra markup
+   Based on How To Clear Floats Without Structural Markup by PiE
+   [http://www.positioniseverything.net/easyclearing.html] */
+
+.clearfix:after, #container:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow:hidden;
+}
+.clearfix, #container {display: block;}
+
+/* Regular clearing
+   apply to column that should drop below previous ones. */
+
+.clear { clear:both; }

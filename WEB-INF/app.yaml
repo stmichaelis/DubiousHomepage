@@ -1,0 +1,27 @@
+application: testapp
+version: 1
+runtime: java
+public_root: /public
+
+resource_files:
+  - exclude: /build/**
+
+handlers:
+  - url: /*
+    servlet: controllers.HomeController
+
+  - url: /home/*
+    servlet: controllers.HomeController
+    name: home
+  - url: /motivation/*
+    servlet: controllers.MotivationController
+    name: motivation
+  - url: /research/*
+    servlet: controllers.ResearchController
+    name: research
+  - url: /background/*
+    servlet: controllers.BackgroundController
+    name: background
+  - url: /technology/*
+    servlet: controllers.TechnologyController
+    name: technology
