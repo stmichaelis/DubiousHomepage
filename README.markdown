@@ -3,9 +3,8 @@ DubiousHomepage
 
 This project started as the base for a personal homepage. The
 fundamentals used are Mirah for the programming language and Dubious
-for web framework. Mirah and Dubious are both evolving heavily and
-therefore this example may provide a starting point for similar
-projects.
+for web framework. Mirah and Dubious are both evolving heavily but
+maybe this example provides a starting point for similar projects.
 
 As a prerequisite you need to install [Dubious](https://github.com/mirah/dubious)
 I recommend using the Gem in JRuby. The website has been tested with
@@ -20,6 +19,7 @@ certain elements.
 * Webfonts for the main heading
 * Language detection (German/English) and redirect based on
 preferences in http header
+* Random background image, changes every 30 min
 
 You can see the site in action here: [Stefan Michaelis Homepage](http://www.stefan-michaelis.name).
 
