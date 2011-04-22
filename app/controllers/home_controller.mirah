@@ -8,6 +8,20 @@ class HomeController < ApplicationController
         @nav_activeclass =["active", "", "", "", ""]
       end
 
+      $Override
+      def index
+        r = super()
+        if (lang == "en")
+          # Stay here without redirect
+          generate_background_index(params)
+          set_english
+          return render home_en_erb, main_erb
+        end
+        if (lang != "en")
+          return r
+        end
+      end
+
       def show
         generate_background_index(params)
         if (lang.equals("de"))
@@ -38,6 +52,6 @@ protected
         super()
         @page_title = "Home"
         @page_description = "Metadescription"
-        @link_canonical = '<link rel="canonical" href="http://example.com/en"/>'
+        @link_canonical = '<link rel="canonical" href="http://example.com/"/>'
       end
 end
