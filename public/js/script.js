@@ -1,17 +1,11 @@
-/* Indicates first time page is loaded without Ajax.
-   Avoids execution of history popstate. */
-var initial_page_load = true;
-
 $(document).ready(function(){
     /* Navigation Click function */
-    $("nav ul li a").click(function(e) {
-	
+    $("nav ul li a").click(function(e) {	
 	e.preventDefault();
-	
 	/* "this" points to the clicked tab hyperlink: */
 	var element = $(this);
 
-	anim_and_update(element);
+	anim_and_update(element.attr('href'), element);
 
 	if(window.history.pushState){
 	    /* Remember old state */
@@ -22,55 +16,56 @@ $(document).ready(function(){
     /* History back (popstate) function*/
     if(window.history.pushState){
 	window.onpopstate = function (e) { 
-	    if (initial_page_load){
-		initial_page_load = false;
-		return;
-	    }
 	    if (e.state){ 
 		var element = null;
-		$("nav ul li a").each(function() {
-		    if ($(this).attr('href') == e.state) {element = $(this);}
-		});
+		/* Root can be either / or /en, so check whether just / was called. */
+		if ((e.state == "/") || (e.state.indexOf('/?b=') == 0)){
+		    element = $("nav ul li a:first");
+		}else {
+		    /* Find element matching the previous state. */
+		    $("nav ul li a").each(function() {
+			var index = e.state.indexOf('?');
+			var pathname = e.state
+			if (index >= 0){ 
+			    pathname = e.state.substring(index, 0);
+			}
+			if ($(this).attr('href').indexOf(pathname) == 0) {element = $(this);}
+		    });
+		}
 		if (element != null){
-		    anim_and_update(element);
+		    anim_and_update(e.state, element);
 		}
 	    }
 	}
     }
     /* Remember current state of non-ajax-loaded page*/
     if(window.history.pushState){
-	$("nav ul li a").each(function() {
-	    if ($(this).is(".active")) {
-		window.history.replaceState($(this).attr('href'), document.title, $(this).attr('href')); 
-	    }
-	});
+	window.history.replaceState(window.location.pathname+window.location.search, document.title, window.location.pathname+window.location.search);
     }
 });
 
 /* Animates page boxes on leaving or arriving background page */
-function anim_and_update(element){
-    /* If it is currently active, return false and exit: */
-    // if(element.find('.active').length) return false;
+function anim_and_update(url, element){
     
     /* For special background page move elements in or out */
     if (element.attr("href").search("background") >= 0){
 	$("#profilepic").slideUp(2000);
 	$("#contact_data").slideUp(2000);
-	$("#main").animate({marginTop: "380px"}, 2000, function(){update_page(element)});
+	$("#main").animate({marginTop: "380px"}, 2000, function(){update_page(url, element)});
     } else if ($('.active').attr('href').search("background") >= 0){
 	// Remove hidden classes
 	$('.invisible').removeClass('invisible');
 
 	$("#profilepic").slideDown(2000);
 	$("#contact_data").slideDown(2000);
-	$("#main").animate({marginTop: "10px"}, 2000, function(){update_page(element)});
+	$("#main").animate({marginTop: "10px"}, 2000, function(){update_page(url, element)});
     } else {
-	update_page(element);
+	update_page(url, element);
     }
 }
 
 /* Updates the page through calling Ajax or using cache data. */
-function update_page(element){
+function update_page(url, element){
     /* Setting new tab active */
     $("nav ul li a").each(function() {
 	$(this).removeClass("active");	
@@ -81,11 +76,11 @@ function update_page(element){
     if(!element.data('cache'))
     {	
 	/* If no cache is present, show the gif preloader and run an AJAX request: */
-	$('#contentHolder').html('<img src="images/ajax_preloader.gif" width="64" height="64" class="preloader" />');
-	$.get(element.attr("href"),function(msg){
+	$('#contentHolder').html('<img src="/images/ajax_preloader.gif" width="64" height="64" class="preloader" />');
+	$.get(url,function(msg){
 	    replace_content(msg);
 	    
-	    /* After page was received, add it to the cache for the current hyperlink: */
+	    /* After page was received, add it to the cache for the current hyperlink. Do not cache Home-link*/
 	    if (element.html().search("Home") < 0){
 		element.data('cache', msg);
 	    }
@@ -117,9 +112,10 @@ function replace_content(msg){
 	var bimage = msg.match(/background-image:(.*\.jpg\));\">/);
 	if (bimage){
 	    $("#container").css("backgroundImage", bimage[1]);
-	    // Replace Nav-Links
+	    // Replace Nav-Links and remove cache
 	    $("nav ul li a").each(function(index) {
 		$(this).attr("href", res.find("nav ul li a").eq(index).attr("href"));
+		$(this).data('cache', null);
 	    });
 	}
     }
