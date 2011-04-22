@@ -107,7 +107,7 @@ protected
         @lang_version = "English Version"
         @lang_contact = "Kontakt"
         @lang_profile = "Profil"
-        @lang_topics = ["Topic A", "Topic B", "Topic C", "Topic D", "Topic E"]
+        @lang_topics = ["Home", "Topic A", "Topic B", "Topic C", "Topic D"]
         @lang_changelink = "#{params.controller}/en#{get_background_parameter}"
       end
 
@@ -115,7 +115,7 @@ protected
         @lang_version = "Deutsche Version"
         @lang_contact = "Contact"
         @lang_profile = "Profile"
-        @lang_topics = ["Topic A", "Topic B", "Topic C", "Topic D", "Topic E"]
+        @lang_topics = ["Home", "Topic A", "Topic B", "Topic C", "Topic D"]
         @lang_changelink = "#{params.controller}/de#{get_background_parameter}"
       end
 
