@@ -51,7 +51,6 @@ header {
     margin-top: 10px;
     padding: 10px 10px;
     background: #9F8158;
-    background-color: rgba( 159, 129, 88, 0.5);
     background: rgba( 159, 129, 88, 0.5);
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -61,7 +60,6 @@ header {
 .roundboxinner {
     padding: 10px 10px;
     background: #EBC785;
-    background-color: rgba(235, 199, 133, 0.9);
     background: rgba(235, 199, 133, 0.9);
     border-radius: 5px;
     -moz-border-radius: 5px;
